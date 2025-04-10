@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оголошення про авто</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto py-10 px-4">
+    <h1 class="text-3xl font-bold mb-6 text-center">Оголошення про автомобілі</h1>
+    <div id="cars-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+  </div>
+
+  <script>
+    async function fetchCars() {
+      try {
+        const response = await fetch('http://127.0.0.1:8001/cars');
+        const cars = await response.json();
+        const container = document.getElementById('cars-container');
+
+        cars.forEach(car => {
+          const card = document.createElement('div');
+          card.className = "bg-white rounded-xl shadow-md overflow-hidden flex flex-col";
+
+          card.innerHTML = `
+            <img src="${car.image_url}" alt="${car.title}" class="w-full h-48 object-cover">
+            <div class="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <h2 class="text-xl font-semibold mb-2">${car.title}</h2>
+                <p><strong>Рік:</strong> ${car.year}</p>
+                <p><strong>Ціна:</strong> ${car.price_usd}$</p>
+                <p><strong>Пробіг:</strong> ${car.odometer}</p>
+                <p><strong>Двигун:</strong> ${car.engine}</p>
+                <p><strong>Коробка:</strong> ${car.transmissions || '—'}</p>
+                <p><strong>Місто:</strong> ${car.location}</p>
+              </div>
+              ${car.link ? `
+                <a href="${car.link}" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-center px-4 py-2 rounded hover:bg-blue-700 transition">
+                  Переглянути оголошення
+                </a>` : ''}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Помилка при завантаженні авто:', err);
+      }
+    }
+
+    fetchCars();
+  </script>
+</body>
+</html>

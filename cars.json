@@ -1,0 +1,122 @@
+[
+    {
+        "id": 4407,
+        "title": "Skoda Octavia",
+        "year": "2021",
+        "price_usd": "26 369$",
+        "odometer": "80 тис. км",
+        "engine": "Дизель, 2 л.",
+        "transmissions": "Автомат",
+        "location": "Луцьк ( від )",
+        "image_url": "https://cdn0.riastatic.com/photosnew/auto/photo/skoda_octavia__593523390bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_skoda_octavia_38105592.html"
+    },
+    {
+        "id": 6102,
+        "title": "Skoda Octavia",
+        "year": "2016",
+        "price_usd": "12 000$",
+        "odometer": "320 тис. км",
+        "engine": "Дизель, 1.6 л.",
+        "transmissions": "Автомат",
+        "location": "Київ ( від )",
+        "image_url": "https://cdn2.riastatic.com/photosnew/auto/photo/skoda_octavia__578474612bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_skoda_octavia_37568095.html"
+    },
+    {
+        "id": 2511,
+        "title": "Mercedes-Benz Sprinter",
+        "year": "2002",
+        "price_usd": "8 000$",
+        "odometer": "5000 тис. км",
+        "engine": "Дизель, 2.69 л.",
+        "transmissions": null,
+        "location": "Лубни ( від )",
+        "image_url": "https://cdn2.riastatic.com/photosnew/auto/photo/mercedes-benz_sprinter__594256442bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_mercedes_benz_sprinter_38132020.html"
+    },
+    {
+        "id": 2726,
+        "title": "BMW 5 Series",
+        "year": "2010",
+        "price_usd": "17 800$",
+        "odometer": "290 тис. км",
+        "engine": "Бензин, 2.99 л.",
+        "transmissions": "Автомат",
+        "location": "Полтава ( від )",
+        "image_url": "https://cdn4.riastatic.com/photosnew/auto/photo/bmw_5-series__583484179bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_bmw_5_series_37747289.html"
+    },
+    {
+        "id": 8111,
+        "title": "BMW X5",
+        "year": "2016",
+        "price_usd": "28 500$",
+        "odometer": "127 тис. км",
+        "engine": "Бензин, 2.98 л.",
+        "transmissions": "Автомат",
+        "location": "Шептицький ( від )",
+        "image_url": "https://cdn3.riastatic.com/photosnew/auto/photo/bmw_x5__591663408bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_bmw_x5_38039417.html"
+    },
+    {
+        "id": 2005,
+        "title": "Mazda CX-5",
+        "year": "2022",
+        "price_usd": "32 300$",
+        "odometer": "35 тис. км",
+        "engine": "Бензин, 2.49 л.",
+        "transmissions": "Автомат",
+        "location": "Київ ( від )",
+        "image_url": "https://cdn4.riastatic.com/photosnew/auto/photo/mazda_cx-5__592692339bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_mazda_cx_5_38038968.html"
+    },
+    {
+        "id": 2066,
+        "title": "Kia Sportage",
+        "year": "2019",
+        "price_usd": "25 000$",
+        "odometer": "90 тис. км",
+        "engine": "Дизель, 2 л.",
+        "transmissions": "Автомат",
+        "location": "Миколаїв ( від )",
+        "image_url": "https://cdn0.riastatic.com/photosnew/auto/photo/kia_sportage__594188370bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_kia_sportage_38129656.html"
+    },
+    {
+        "id": 9775,
+        "title": "Mazda CX-5",
+        "year": "2016",
+        "price_usd": "14 800$",
+        "odometer": "106 тис. км",
+        "engine": "Бензин, 2.5 л.",
+        "transmissions": "Автомат",
+        "location": "Сміла ( від )",
+        "image_url": "https://cdn3.riastatic.com/photosnew/auto/photo/mazda_cx-5__554546358bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_mazda_cx_5_36701316.html"
+    },
+    {
+        "id": 1649,
+        "title": "Mercedes-Benz Sprinter",
+        "year": "2020",
+        "price_usd": "27 999$",
+        "odometer": "200 тис. км",
+        "engine": "Дизель, 2.14 л.",
+        "transmissions": null,
+        "location": "Київ ( від )",
+        "image_url": "https://cdn2.riastatic.com/photosnew/auto/photo/mercedes-benz_sprinter__594152662bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_mercedes_benz_sprinter_38128434.html"
+    },
+    {
+        "id": 1452,
+        "title": "Audi A6",
+        "year": "2018",
+        "price_usd": "33 000$",
+        "odometer": "316 тис. км",
+        "engine": "Гібрид (HEV), 2.97 л.",
+        "transmissions": "Автомат",
+        "location": "Житомир ( від )",
+        "image_url": "https://cdn0.riastatic.com/photosnew/auto/photo/audi_a6__594130735bx.jpg",
+        "link": "https://auto.ria.com/uk/auto_audi_a6_38127482.html"
+    }
+]
