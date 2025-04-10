@@ -205,3 +205,32 @@ async def delete_car(id: int):
     save_cars(cars)
 
     return car_to_delete
+
+
+@app.put("/cars", response_model=CarModel)
+async def add_car(car: CarModel):
+    cars = load_cars()
+    # Створюємо новий ID для автомобіля
+    new_id = len(cars) + 1
+
+    # Створюємо новий автомобіль з отриманих даних
+    new_car = {
+        "id": new_id,
+        "title": car.title,
+        "year": car.year,
+        "price_usd": car.price_usd,
+        "odometer": car.odometer,
+        "engine": car.engine,
+        "transmissions": car.transmissions or "Unknown",
+        "location": car.location,
+        "image_url": car.image_url,
+        "link": car.link  # Переконайтеся, що цей параметр передається
+    }
+
+    # Додаємо новий автомобіль до списку
+    cars.append(new_car)
+
+    # Зберігаємо оновлені дані в файл або базу даних
+    save_cars(cars)
+
+    return new_car
