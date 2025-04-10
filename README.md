@@ -54,3 +54,32 @@ GET /cars/title/BMW
 
 6. Отримати всі автомобілі за роком
 Запит: GET /cars/year/{year}
+
+
+Dockerfile
+# Використовуємо офіційний Python образ з підтримкою версії 3.9
+FROM python:3.9-slim
+
+# Встановлюємо робочий каталог всередині контейнера
+WORKDIR /app
+
+# Копіюємо файл з залежностями  в контейнер
+COPY requirements.txt .
+
+# Встановлюємо залежності
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копіюємо весь код проекту в контейнер
+COPY . .
+
+# Відкриваємо порт 8000 для FastAPI (за замовчуванням)
+EXPOSE 8000
+
+# Команда для запуску FastAPI з uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
+Запуск Docker контейнера
+Створіть контейнер за допомогою команди:
+docker build -t fastapi-auto-app .
+
+Запустіть контейнер:
+docker run -d -p 8000:8000 fastapi-auto-app
