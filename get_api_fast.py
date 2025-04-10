@@ -1,7 +1,7 @@
 import json
 import os
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from typing import List
 from pydantic import BaseModel
 from typing import Optional
@@ -42,13 +42,13 @@ def clean_car_data(car):
     raw_price = car.get("price_usd", "0")
     try:
         price = int(raw_price.replace("\xa0", "").replace("$", "").replace(" ", "").strip())
-    except:
+    except ValueError:
         price = 0
 
     # Рік: перетворення у int
     try:
         year = int(car.get("year", 0))
-    except:
+    except ValueError:
         year = 0
 
     return {
@@ -117,24 +117,24 @@ async def get_cars(
     # Пагінація: повертаємо лише частину списку, відповідно до skip та limit
     return cars[skip:skip + limit]
 
+
 @app.get("/cars/title/{title}", response_model=List[CarModel])
 async def get_cars_by_title(title: str):
     try:
         cars = load_cars()  # Load cars from the data source
 
-        # Debugging print to check the loaded cars
-        print(f"Loaded cars: {cars}")
-
         # Filter cars based on the title (case-insensitive)
         filtered_cars = [car for car in cars if title.lower() in car["title"].lower()]
 
-        # Debugging print to check the filtered cars
-        print(f"Filtered cars: {filtered_cars}")
-
-        return filtered_cars
+        if filtered_cars:
+            return filtered_cars
+        else:
+            # HTTPException is more appropriate than returning a dictionary directly
+            raise HTTPException(status_code=404, detail="Немає машин такої моделі")
     except Exception as e:
         print(f"Error: {e}")
-        return {"detail": "Internal Server Error"}
+        raise HTTPException(status_code=500, detail="Немає машин такої моделі")
+
 
 @app.get("/cars/year/{year}", response_model=List[CarModel])
 async def get_cars_by_year(year: int):
