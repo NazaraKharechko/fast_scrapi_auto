@@ -81,5 +81,5 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
 Створіть контейнер за допомогою команди:
 docker build -t fastapi-auto-app .
 
-Запустіть контейнер:
+Запустіть контейнер: =>
 docker run -d -p 8000:8000 fastapi-auto-app
