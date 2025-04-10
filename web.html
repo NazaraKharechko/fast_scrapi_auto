@@ -9,24 +9,48 @@
 <body class="bg-gray-100">
   <div class="container mx-auto py-10 px-4">
     <h1 class="text-3xl font-bold mb-6 text-center">Оголошення про автомобілі</h1>
+
+    <!-- Індикатор завантаження -->
+    <div id="loading" class="text-center mb-6 text-xl text-gray-500 hidden">Завантаження...</div>
+
+    <!-- Контейнер для карток авто -->
     <div id="cars-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+
+    <!-- Повідомлення, коли немає даних -->
+    <div id="no-data" class="hidden text-center text-xl text-gray-500">Немає доступних оголошень</div>
   </div>
 
   <script>
     async function fetchCars() {
+      // Показуємо індикатор завантаження
+      document.getElementById('loading').classList.remove('hidden');
+      document.getElementById('cars-container').classList.add('hidden');
+
       try {
         const response = await fetch('http://127.0.0.1:8001/cars');
         const cars = await response.json();
         const container = document.getElementById('cars-container');
+        const noDataMessage = document.getElementById('no-data');
+
+        // Якщо немає автомобілів
+        if (cars.length === 0) {
+          container.classList.add('hidden');
+          noDataMessage.classList.remove('hidden');
+          return;
+        }
+
+        // Приховуємо індикатор завантаження
+        document.getElementById('loading').classList.add('hidden');
+        container.classList.remove('hidden');
 
         cars.forEach(car => {
           const card = document.createElement('div');
           card.className = "bg-white rounded-xl shadow-md overflow-hidden flex flex-col";
 
           card.innerHTML = `
-            <img src="${car.image_url}" alt="${car.title}" class="w-full h-48 object-cover">
+            <img src="${car.image_url}" alt="${car.title}" class="w-[500px] h-[350px] object-cover">
             <div class="p-4 flex-1 flex flex-col justify-between">
-              <div>
+              <div class="mb-3">
                 <h2 class="text-xl font-semibold mb-2">${car.title}</h2>
                 <p><strong>Рік:</strong> ${car.year}</p>
                 <p><strong>Ціна:</strong> ${car.price_usd}$</p>
@@ -36,7 +60,7 @@
                 <p><strong>Місто:</strong> ${car.location}</p>
               </div>
               ${car.link ? `
-                <a href="${car.link}" target="_blank" class="mt-4 inline-block bg-blue-600 text-white text-center px-4 py-2 rounded hover:bg-blue-700 transition">
+                <a href="${car.link}" target="_blank" class="mt-2 inline-block bg-blue-600 text-white text-center px-4 py-2 rounded hover:bg-blue-700 transition">
                   Переглянути оголошення
                 </a>` : ''}
             </div>

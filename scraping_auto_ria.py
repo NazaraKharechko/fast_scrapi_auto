@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import re
 
-url = 'https://auto.ria.com/uk/search/?page=2'
+url = 'https://auto.ria.com/uk/search/?page=17'
 all_data = []
 
 
@@ -27,12 +27,12 @@ def scrape():
     all_cars = soup.find_all('div', {'class': 'content'})
     print(len(all_cars))
 
-    for car in all_cars:
+    for car in all_cars[1:]:
         try:
             title_car = safe_find_text(car, 'span', {"class": "blue bold"})
             year_raw = safe_find_text(car, 'div', {"class": "item ticket-title"})
             year_car = year_raw[-4:] if year_raw else None
-            price_usd = safe_find_text(car, 'span', {"class": "bold size22 green"}) + '$'
+            price_usd = safe_find_text(car, 'span', {"class": "bold size22 green"})
             run_car = safe_find_text(car, 'li', {"class": "item-char js-race"})
             location = safe_find_text(car, 'li', {"class": "item-char view-location js-location"})
             # Генерація унікального числового ID за допомогою хешування

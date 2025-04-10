@@ -17,18 +17,19 @@ with open('cars.json', 'r', encoding='utf-8') as f:
     else:
         collection.insert_one(data)
 
-# Якщо вставляєш по одному запису під час парсингу:
+# Якщо вставка по одному запису під час парсингу:
 car_data = {
     "title": title_car,
     "year": int(year_car) if year_car else None,
-    "price_usd": int(price_usd.replace(' ', '').replace('$', '')),
-    "odometer": run_car,
-    "engine": engine,
-    "transmission": transmissions,
-    "location": location,
-    "image_url": url_foto,
-    "ad_url": url_ad,
+    "price_usd": int(price_usd.replace(' ', '').replace('$', '')) if price_usd else 0,
+    "odometer": run_car if run_car else "Unknown",
+    "engine": engine if engine else "Unknown",
+    "transmission": transmissions if transmissions else "Unknown",
+    "location": location if location else "Unknown",
+    "image_url": url_foto if url_foto else "Unknown",
+    "ad_url": url_ad if url_ad else "Unknown",
     "timestamp": datetime.now().isoformat()
 }
 
 collection.insert_one(car_data)
+

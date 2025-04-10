@@ -6,6 +6,7 @@ from typing import List
 from pydantic import BaseModel
 from typing import Optional
 
+from starlette.responses import RedirectResponse
 
 # Створюємо екземпляр FastAPI
 app = FastAPI()
@@ -20,18 +21,16 @@ app.add_middleware(
 
 # Модель продукту для валідації даних
 class CarModel(BaseModel):
-    id: int
-    title: str
-    year: int
-    price_usd: int
-    odometer: str
-    engine: str
-    transmissions: Optional[str] = None  # ← дозволяє null
-    location: str
-    image_url: str
-    link: str
-
-
+    id: Optional[int] = None
+    title: Optional[str] = None
+    year: Optional[int] = None
+    price_usd: Optional[int] = None
+    odometer: Optional[str] = None
+    engine: Optional[str] = None
+    transmissions: Optional[str] = None  # Може бути null
+    location: Optional[str] = None
+    image_url: Optional[str] = None
+    link: Optional[str] = None  # Може бути порожнім, якщо немає лінка
 
     class Config:
         orm_mode = True
@@ -100,6 +99,10 @@ async def get_car_by_id(car_id: int):
     except Exception as e:
         print(f"Error: {e}")
         return {"detail": "Internal Server Error"}
+
+@app.get("/")
+def redirect_to_cars():
+    return RedirectResponse(url="/cars")
 
 
 # Ендпоінт для отримання списку авто з пагінацією
